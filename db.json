@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "name": "Biswajit Ghosh",
+      "username": "bg2329",
+      "email": "bg2329@ece.jgec.ac.in",
+      "id": 1
+    },
+    {
+      "name": "saroj kumar manna",
+      "username": "saroj3435",
+      "email": "skm2339@gmail.com",
+      "id": 2
+    },
+    {
+      "name": "soumyadip kar",
+      "username": "soumy24545",
+      "email": "skar2339@gmail.com",
+      "id": 3
+    },
+    {
+      "name": "hitman",
+      "username": "hitman2329@gmail.com",
+      "email": "subhansenatpai@gmail.com",
+      "id": 4
+    },
+    {
+      "name": "indaranil choudhury",
+      "username": "indarnil23545",
+      "email": "ic2341@ece.jgec.ac.in",
+      "id": 5
+    },
+    {
+      "name": "akshy bera ",
+      "username": "ak2389",
+      "email": "ak2345@it.jgec.ac.in",
+      "id": 6
+    },
+    {
+      "name": "biswajit721159",
+      "username": "bg23299292",
+      "email": "bg2329@ece.jgec.ac.in",
+      "id": 7
+    }
+  ]
+}
