@@ -18,7 +18,7 @@
     "react-scripts": "3.4.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "concurrently \"react-scripts start\" \"npm run json-server\"",
     "json-server": "json-server --watch db.json --port 3003",
     "start:dev": "concurrently \"npm start\" \"npm run json-server\"",
     "build": "react-scripts build",
