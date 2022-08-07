@@ -55,7 +55,7 @@ export const ProductFrom = () => {
         </thead>
         <tbody>
           {arr.map((user, index) => (
-            <tr>
+            <tr key={index}>
               <th scope="row">{index}</th>
               <td>{user}</td>
               <td>
