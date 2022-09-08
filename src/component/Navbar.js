@@ -8,7 +8,7 @@ export default function Navbar() {
   const toggelStyle = () => {
     if (mode === "light") {
       setmode("dark");
-      document.body.style.backgroundColor = "#6B6C6D";
+      document.body.style.backgroundColor = "#E8DF28 ";
       setbtnText("Light mode on");
     } else if (mode === "dark") {
       setmode("light");
