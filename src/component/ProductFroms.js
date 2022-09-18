@@ -20,6 +20,8 @@ export const ProductFrom = () => {
   let [light, setlight] = useState("dark");
   let [word, setword] = useState("Light mode on");
 
+
+  //data section
   let [arr, setarray] = useState([
     { name: "Biswajit Ghosh", mobile: "1111111111" },
     { name: "Subhankar Kumar Yadav", mobile: "2222222222" },
@@ -27,8 +29,8 @@ export const ProductFrom = () => {
     { name: "Subhan Senapati", mobile: "4444444444" },
     { name: "Saroj Kumar Manna", mobile: "5555555555" },
     { name: "Soumyadip Kar", mobile: "6666666666" },
-    { name: "Indranil Chowdhury", mobile: "7777777777" },
-    { name: "Akshy bera", mobile: "88888888888" },
+    { name: "Indranil Chowdhury", mobile: "777777777" },
+    { name: "Akshy bera", mobile: "8888888888" },
     { name: "Arijit Das", mobile: "9999999999" },
     { name: "krishina Show", mobile: "1234567891" },
   ]);
@@ -56,22 +58,21 @@ export const ProductFrom = () => {
 
   const solve1 =(name)=>{
     let  n=name.length;
-    console.log(n);
     if(n==0) return 0;
     else
     {
       for(let i=0;i<n;i++)
       {
-        if((name[i]>='a' && name[i]<='z') || (name[i]>='A' && name [i]<='Z'))
+        if((name[i]>='a' && name[i]<='z') || (name[i]>='A' && name [i]<='Z') || (name[i]===' '))
         {
           continue;
         }
         else
         {
-          return  0;
+          return  false;
         }
       }
-      return 1;
+      return true;
     }
   }
   const solve2=(mobile)=>{
@@ -99,7 +100,6 @@ export const ProductFrom = () => {
 
     const a=solve1(name);
     const b=solve2(mobile);
-    console.log(a,b);
     if (a==false) {
       alert("Error in name section ");
     } 
@@ -140,6 +140,8 @@ export const ProductFrom = () => {
 
 // update section 
 
+
+
   const UpdateUser = (id) => {
     let val1 = arr[id].name;
     let val3=arr[id].mobile;
@@ -150,15 +152,39 @@ export const ProductFrom = () => {
   };
 
   const Update = () => {
-    if (Id === -1) {
+
+    if (Id === -1)
+    {
       alert("Prease select a person");
-    } else {
-      arr[Id].name = updatename;
-      arr[Id].mobile=updatemobile;
-      setarray([...arr]);
-      setupdatename("");
-      setupdatemobile("");
-      setId(-1);
+    } 
+    else 
+    {
+      const a=solve1(updatename);
+      const b=solve2(updatemobile);
+      if(a===true  && b===true )
+      {
+         arr[Id].name = updatename;
+         arr[Id].mobile=updatemobile;
+         setarray([...arr]);
+         setupdatename("");
+         setupdatemobile("");
+         setId(-1);
+      }
+      else
+      {
+          setupdatename("");
+          setupdatemobile("");
+          setId(-1);
+          if(a===false)
+          {
+             alert("error in name section !! ");
+          }
+          else if(b===false)
+          {
+             alert("error in mobile section !! ");
+          }
+      }
+      
     }
   };
 
