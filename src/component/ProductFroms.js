@@ -242,12 +242,8 @@ export const ProductFrom = () => {
      alert("sorry !! not Found "+searchmobile);
      setsearchmobile("");
    }
-
   
-
-
-
-  }
+}
 
 
 
@@ -256,7 +252,8 @@ export const ProductFrom = () => {
 
   return (
     <div className="container  mt-4">
-      <div className="container ">
+      <div className="row">
+        <div className="container col-sm">
         <div className="container">
           <input
             type="text"
@@ -267,39 +264,8 @@ export const ProductFrom = () => {
               setname(e.target.value);
             }}
           />
-          <input
-            style={{ marginLeft: "100px" }}
-            type="text"
-            className=""
-            placeholder="Setect option"
-            value={updatename}
-            onChange={(e) => {
-              setupdatename(e.target.value);
-            }}
-          />
-          <input
-            style={{ marginLeft: "100px" }}
-            type="text"
-            className=""
-            value={searchname}
-            onChange={(e) => {
-              setsearchname(e.target.value);
-            }}
-            placeholder="Search name"
-          />
-          {/* this is name section */}
-          <input
-            style={{ marginLeft: "100px" }}
-            type="text"
-            className=""
-            value={searchmobile}
-            onChange={(e) => {
-              setsearchmobile(e.target.value);
-            }}
-            placeholder="search mobile number"
-          />
-        </div>
-        <div className="container mt-2">
+          </div>
+          <div className="container mt-2">
           <input
             type="text"
             className="col"
@@ -309,8 +275,29 @@ export const ProductFrom = () => {
               setmobile(e.target.value);
             }}
           />
+          </div>
+          <div className="container mt-2">
+          <button type="button" className="btn btn-primary " onClick={Add}>
+            Submit
+          </button>
+          </div>
+        </div>
+        <div className="container col-sm ">
+        <div className="container ">
+        <input
+            // style={{ marginLeft: "100px" }}
+            type="text"
+            className=""
+            placeholder="Setect option"
+            value={updatename}
+            onChange={(e) => {
+              setupdatename(e.target.value);
+            }}
+          />
+          </div>
+          <div className="container mt-2">
           <input
-            style={{ marginLeft: "100px" }}
+            // style={{ marginLeft: "100px" }}
             type="text"
             className=""
             placeholder="Setect option"
@@ -319,39 +306,68 @@ export const ProductFrom = () => {
               setupdatemobile(e.target.value);
             }}
           />
+          </div>
+          <div className="container mt-2">
           <button
-            style={{ marginLeft: "100px" }}
-            type="button"
-            className="btn btn-success"
-            onClick={search1}
-          >
-            Search
-          </button>
-          {/* this is searching  section */}
-          <button
-            style={{ marginLeft: "215px" }}
-            type="button"
-            className="btn btn-success"
-            onClick={search2}
-          >
-            Search
-          </button>
-        </div>
-        <div className="container mt-2 ">
-          <button type="button" className="btn btn-primary " onClick={Add}>
-            Submit
-          </button>
-          <button
-            style={{ marginLeft: "215px" }}
+            // style={{ marginLeft: "215px" }}
             type="button"
             className="btn btn-warning "
             onClick={Update}
           >
             Update
           </button>
+          </div>
+        </div>
+        <div className="container col-sm">
+          
+        <div className="container">
+           <input
+            // style={{ marginLeft: "100px" }}
+            type="text"
+            className=""
+            value={searchname}
+            onChange={(e) => {
+              setsearchname(e.target.value);
+            }}
+            placeholder="Search name"
+          />
+          </div>
+          <div className="container mt-2">
+          <button
+            // style={{ marginLeft: "100px" }}
+            type="button"
+            className="btn btn-success"
+            onClick={search1}
+          >
+            Search
+          </button>
+          </div>
+        </div>
+        <div className="container col-sm">
+        <div className="container ">
+           <input
+            // style={{ marginLeft: "100px" }}
+            type="text"
+            className=""
+            value={searchmobile}
+            onChange={(e) => {
+              setsearchmobile(e.target.value);
+            }}
+            placeholder="search mobile number"
+          />
+          </div>
+          <div className="container mt-2">
+          <button
+            // style={{ marginLeft: "215px" }}
+            type="button"
+            className="btn btn-success"
+            onClick={search2}
+          >
+            Search
+          </button>
+          </div>
         </div>
       </div>
-
       <table
         className={
           light == "dark"
