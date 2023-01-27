@@ -1,42 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export const ProductFrom = () => {
 
   //  for add section 
   let [name, setname] = useState("");
   let [mobile, setmobile] = useState("");
-
-
   // update section 
   let [updatename, setupdatename] = useState("");
   let [updatemobile, setupdatemobile] = useState("");
   let [Id, setId] = useState(-1);
-
   // search section 
   let[searchname,setsearchname]=useState("");
   let[searchmobile,setsearchmobile]=useState("");
-  
-
+  // color section
   let [light, setlight] = useState("dark");
   let [word, setword] = useState("Light mode on");
-
-
   //data section
   let [arr, setarray] = useState([
     { name: "Biswajit Ghosh", mobile: "1111111111" },
-    { name: "Subhankar Kumar Yadav", mobile: "2222222222" },
-    { name: "SKY", mobile: "3333333333" },
-    { name: "Subhan Senapati", mobile: "4444444444" },
+    { name: "Subhankar Kr Yadav", mobile: "2222222222" },
+    { name: "Surya Kumar Yadav", mobile: "3333333333" },
+    { name: "Subham Senapati", mobile: "4444444444" },
     { name: "Saroj Kumar Manna", mobile: "5555555555" },
     { name: "Soumyadip Kar", mobile: "6666666666" },
-    { name: "Indranil Chowdhury", mobile: "777777777" },
-    { name: "Akshy bera", mobile: "8888888888" },
-    { name: "Arijit Das", mobile: "9999999999" },
-    { name: "krishina Show", mobile: "1234567891" },
+    { name: "Indranil Chowdhury", mobile: "7777777777" },
+    { name: "Akshy kumar bera", mobile: "8888888888" },
+    { name: "Arijit kumar Das", mobile: "9999999999" },
+    { name: "kagiso Rabada", mobile: "1234567891" },
   ]);
-
-
-
+ 
+  let [product,setproduct]=useState([]);
   // color mode section 
   const Colormode = () => {
     if (light == "dark") {
@@ -47,15 +40,7 @@ export const ProductFrom = () => {
       setword("Light mode on");
     }
   };
-
-
-
-
-
-
   // Add section 
-  
-
   const solve1 =(name)=>{
     let  n=name.length;
     if(n==0) return 0;
@@ -100,48 +85,36 @@ export const ProductFrom = () => {
 
     const a=solve1(name);
     const b=solve2(mobile);
-    if (a==false) {
+    if (a==false) 
+    {
       alert("Error in name section ");
     } 
     else if(b==false)
     {
       alert("Error in mobile section ");
     }
-    else if(a==true && b==true) {
+    else if(a==true && b==true) 
+    {
       arr.push({name,mobile});
       arr.reverse();
       setarray([...arr]);
       setname("");
       setmobile("");
     }
-    else{
+    else
+    {
       alert("Error !!");
     }
+    
   };
-
-
-
-
-
-
-
-
   //delete section 
-  const Delete = (id) => {
-    let narr = arr.filter((user, index) => {
-      return index !== id;
+  const Delete = (name) => {
+    let narr = product.filter((user, index) => {
+      return user.name !== name;
     });
-    setarray([...narr]);
+    setproduct([...narr]);
   };
-
-
-
-
-
 // update section 
-
-
-
   const UpdateUser = (id) => {
     let val1 = arr[id].name;
     let val3=arr[id].mobile;
@@ -152,7 +125,6 @@ export const ProductFrom = () => {
   };
 
   const Update = () => {
-
     if (Id === -1)
     {
       alert("Prease select a person");
@@ -165,7 +137,7 @@ export const ProductFrom = () => {
       {
          arr[Id].name = updatename;
          arr[Id].mobile=updatemobile;
-         setarray([...arr]);
+         setproduct([...arr]);
          setupdatename("");
          setupdatemobile("");
          setId(-1);
@@ -187,69 +159,40 @@ export const ProductFrom = () => {
       
     }
   };
-
-
-
-
-
   //searching section 
+ useEffect(()=>{
+  loaduser();
+ },[]);
 
+  useEffect(()=>{
+    search1();
+  },[searchname]);
 
-  const search1=()=>{
-
-    let count=0;
-   for(let i=0;i<arr.length;i++)
-   {
-      if(arr[i].name==searchname)
-      {
-        count++;
-        break;
-      }
-   }
-
-   if(count==1)
-   {
-     alert(" yes found "+ searchname);
-     setsearchname("");
-   }
-   else
-   {
-     alert("sorry !! not Found "+searchname);
-     setsearchname("");
-   }
-
+  function loaduser()
+  {
+    setproduct([...arr]);
   }
 
-  const search2=()=>{
+  const search1=()=>{
+   
+    console.log(product);
 
- let count=0;
-   for(let i=0;i<arr.length;i++)
-   {
-      if(arr[i].mobile==searchmobile)
-      {
-        count++;
-        break;
-      }
-   }
+    if(searchname.length==0) {
+      setproduct([...product]); 
+    }
+    
+    let narr=arr.filter((user,index)=>{
+       let s=user.name;
+       let n=searchname.length;
+       let x=s.substring(0,n);
+       x=x.toLowerCase();
+       let y=searchname.toLowerCase();
+       return x==y;
+    });
+    setproduct([...narr]);
+  }
 
-   if(count==1)
-   {
-     alert(" yes found "+ searchmobile);
-     setsearchmobile("");
-   }
-   else
-   {
-     alert("sorry !! not Found "+searchmobile);
-     setsearchmobile("");
-   }
   
-}
-
-
-
-
-
-
   return (
     <div className="container  mt-4">
       <div className="row">
@@ -308,14 +251,14 @@ export const ProductFrom = () => {
           />
           </div>
           <div className="container mt-2">
-          <button
+          <buttonn
             // style={{ marginLeft: "215px" }}
             type="button"
             className="btn btn-warning "
             onClick={Update}
           >
             Update
-          </button>
+          </buttonn>
           </div>
         </div>
         <div className="container col-sm">
@@ -333,14 +276,7 @@ export const ProductFrom = () => {
           />
           </div>
           <div className="container mt-2">
-          <button
-            // style={{ marginLeft: "100px" }}
-            type="button"
-            className="btn btn-success"
-            onClick={search1}
-          >
-            Search
-          </button>
+          
           </div>
         </div>
         <div className="container col-sm">
@@ -357,14 +293,6 @@ export const ProductFrom = () => {
           />
           </div>
           <div className="container mt-2">
-          <button
-            // style={{ marginLeft: "215px" }}
-            type="button"
-            className="btn btn-success"
-            onClick={search2}
-          >
-            Search
-          </button>
           </div>
         </div>
       </div>
@@ -380,7 +308,7 @@ export const ProductFrom = () => {
             <th scope="col">Index</th>
             <th scope="col">Name</th>
             <th scope="col">Mobile Number</th>
-            <th>Action</th>
+            <th style={{marginLeft:"4"}}>Action</th>
             <th>
               <button
                 type="button"
@@ -393,7 +321,7 @@ export const ProductFrom = () => {
           </tr>
         </thead>
         <tbody>
-          {arr.map((user, index) => (
+          {product.map((user, index) => (
             <tr key={index}>
               <th scope="row">{index}</th>
               <td>{user.name}</td>
@@ -401,7 +329,7 @@ export const ProductFrom = () => {
               <td>
                 <button
                   className="btn btn-danger mt-2 mr-2"
-                  onClick={(e) => Delete(index)}
+                  onClick={(e) => Delete(user.name)}
                 >
                   Delete User
                 </button>
@@ -412,6 +340,13 @@ export const ProductFrom = () => {
                   onClick={(e) => UpdateUser(index)}
                 >
                   Updata user
+                </button>
+                <button
+                  style={{ padding: "6px", marginLeft: "20px" }}
+                  type="button"
+                  className="btn btn-primary mt-2"
+                >
+                  Edit user
                 </button>
               </td>
               <td></td>

@@ -24,11 +24,14 @@ export default function Navbar() {
           <Link className="navbar-brand" to="/">
             Home
           </Link>
+          <Link className="navbar-brand" to="/adduser">
+            Add user
+          </Link>
           <div className="container ">
             <button
               onClick={toggelStyle}
               type="button"
-              className="btn btn-info"
+              className="btn btn-info rounded-pill"
             >
               {btnText}
             </button>
