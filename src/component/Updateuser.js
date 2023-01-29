@@ -1,35 +1,56 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-export default function Adduser() {
-  const history = useNavigate();
+export default function Updateuser() {
+
+  const { id } = useParams();
+ 
+  const history=useNavigate();
+
+
   let [input, setinput] = useState({
     name: "",
     address: "",
     city: "",
     country: "",
   });
+
   let [name, setname] = useState("");
   let [address, setaddress] = useState("");
   let [city, setcity] = useState("");
-  let [country, setcountry] = useState("");
+  let [country, setcountry] = useState("INDIA");
 
   function submit() {
-   
+    
     input.name = name;
     input.address = address;
     input.city = city;
     input.country = country;
+
+    console.log(input);
+    axios.put(`http://localhost/react_crud_php/view.php/${id}/edit`, input);
+    //history('/');
     
-    axios.post("http://localhost/react_crud_php/view.php", input);
-    history('/');
+    
   }
 
   return (
     <div className="container mt-4">
-      <h3>User form</h3>
+      <h3>Your from</h3>
+      <div className="col-md-6">
+        <label htmlFor="inputEmail4" className="form-label">
+          Your id
+        </label>
+        <input
+          disabled={true}
+          type="number"
+          className="form-control"
+          id="inputEmail4"
+          value={id}
+        />
+      </div>
       <div className="col-md-6">
         <label htmlFor="inputEmail4" className="form-label">
           Email
@@ -79,16 +100,11 @@ export default function Adduser() {
           Country
         </label>
         <select
-          id="inputState"
-          className="form-select"
-          value={country}
-          onChange={(e) => {
-            setcountry(e.target.value);
-          }}
-        >
-          <option>Choose...</option>
-          <option>India</option>
-          <option>...</option>
+              id="inputState"
+              className="form-select">
+              <option >Choose...</option>
+              <option>India</option>
+              <option>...</option>
         </select>
       </div>
 
